@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PinSetter : MonoBehaviour {
 	public int lastStandingCount = -1;
 	public Text standingDisplay;
+	public float distanceToRaise = 40f;
 
 	private Ball ball;
 	private bool ballEnteredBox = false;
@@ -23,6 +24,23 @@ public class PinSetter : MonoBehaviour {
 		if (ballEnteredBox) {
 			CheckStanding();
 		}
+	}
+
+	public void RaisePins() {
+		foreach (Pin pin in GameObject.FindObjectsOfType<Pin>()) {
+			if (pin.IsStanding()) {
+				Debug.Log(pin.IsStanding());
+				pin.transform.Translate(new Vector3(0, distanceToRaise, 0));
+			}
+		}
+	}
+
+	public void LowerPins() {
+		Debug.Log("Lowering pins");
+	}
+
+	public void RenewPins() {
+		Debug.Log("Renewing pins");
 	}
 
 	// Update the lastStandingCount

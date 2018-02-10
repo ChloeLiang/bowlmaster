@@ -23,7 +23,7 @@ public class PinSetter : MonoBehaviour {
 		standingDisplay.text = CountStanding().ToString();
 
 		if (ballEnteredBox) {
-			CheckStanding();
+			UpdateStandingCountAndSettle();
 		}
 	}
 
@@ -45,7 +45,7 @@ public class PinSetter : MonoBehaviour {
 
 	// Update the lastStandingCount
 	// Call PinsHaveSettled() when they have
-	void CheckStanding() {
+	void UpdateStandingCountAndSettle() {
 		int currentStanding = CountStanding();
 		if (currentStanding != lastStandingCount) {
 			lastChangeTime = Time.time;
@@ -82,13 +82,6 @@ public class PinSetter : MonoBehaviour {
 		if (thingHit.GetComponent<Ball>()) {
 			ballEnteredBox = true;
 			standingDisplay.color = Color.red;
-		}
-	}
-
-	void OnTriggerExit(Collider collider) {
-		GameObject thingLeft = collider.gameObject;
-		if (thingLeft.GetComponent<Pin>()) {
-			Destroy(thingLeft);
 		}
 	}
 }

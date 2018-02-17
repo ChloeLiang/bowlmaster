@@ -91,4 +91,24 @@ public class ActionMasterTest {
 		}
 		Assert.AreEqual(tidy, actionMaster.Bowl(0));
 	}
+
+	[Test]
+	public void T10NathanBowlIndexTest() {
+		int[] rolls = {0,10, 5};
+		foreach (int roll in rolls) {
+			actionMaster.Bowl(roll);
+		}
+		Assert.AreEqual(endTurn, actionMaster.Bowl(1));
+	}
+
+	[Test]
+	public void T11Dondi10thFrameTurkey () {
+		int[] rolls = {1,1, 1,1, 1,1, 1,1, 1,1, 1,1, 1,1, 1,1, 1,1};
+		foreach (int roll in rolls) {
+			actionMaster.Bowl (roll);
+		}
+		Assert.AreEqual (reset, actionMaster.Bowl (10));
+		Assert.AreEqual (reset, actionMaster.Bowl (10));
+		Assert.AreEqual (endGame, actionMaster.Bowl (10));
+	}
 }

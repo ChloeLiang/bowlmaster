@@ -36,12 +36,16 @@ public class ActionMaster {
 			}
 		}
 
-		if (pins == 10) {
-			bowl += 2;
+		if (pins == 10) { // Bowl a strike
+			if (bowl % 2 != 0) { // first slot, first slot next game
+				bowl += 2;
+			} else { // second slot, first slot next game
+				bowl += 1;
+			}
 			return Action.EndTurn;
-		}
+		} 
 
-		if (bowl % 2 != 0) {
+		if (bowl % 2 != 0) { // first slot, tidy, second, reset
 			bowl += 1;
 			return Action.Tidy;
 		} else if (bowl % 2 == 0) {
